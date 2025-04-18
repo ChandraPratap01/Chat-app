@@ -23,18 +23,4 @@ wss.on("connection", (socket) => {
             });
         }
     });
-    // socket.on("close",()=>{
-    //   const CurrRoom=users.find((x)=>x.socket==socket)?.roomId
-    //   const index=users.findIndex((x)=>x.socket==socket)          
-    //   users.splice(index,1)
-    //   const SendAll=users.filter((x)=>x.roomId==CurrRoom)
-    //   SendAll.forEach((user)=>{
-    //     user.socket.send(JSON.stringify({
-    //       type:"leave",
-    //       payload:{
-    //         message:"user left"
-    //       }
-    //     }))
-    //   })  
-    //  })
 });
