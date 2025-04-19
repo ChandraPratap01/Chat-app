@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-
+const ConnectionURL = import.meta.env.VITE_CONNECTION_URL;
+console.log(ConnectionURL || "Helo");
 const Chat = () => {
   const { id } = useParams();
   const bottomRef = useRef<HTMLDivElement | null>(null)
@@ -8,7 +9,7 @@ const Chat = () => {
   const [response, setresponse] = useState<string[]>([]);
   const wsref = useRef<WebSocket | null>(null);
   useEffect(() => {
-    const ws = new WebSocket("http://localhost:8080");
+    const ws = new WebSocket(`${ConnectionURL}` || "http://localhost:8080");
     ws.onmessage = (event) => {
       setresponse((m) => [...m, event.data]);
     };
