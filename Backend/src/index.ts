@@ -20,9 +20,13 @@ wss.on("connection", (socket) => {
     }
     if(parsemessage.type=="chat"){
       const CurrRoom=users.find((x)=>x.socket===socket)?.roomId
+      if(!CurrRoom)return
       const SendAll=users.filter((x)=>x.roomId===CurrRoom)
       SendAll.forEach((user)=>{
-        user.socket.send(parsemessage.payload.message)
+        user.socket.send(JSON.stringify({
+          message:parsemessage.payload.message,
+          sender:user.socket===socket?"you":"them"
+        }))
       })
     }
   })
@@ -32,5 +36,8 @@ wss.on("connection", (socket) => {
     users.splice(curruser,1);
     console.log("user left")
    })
-  socket.send("Welcome to the chat room!")
+  socket.send(JSON.stringify({
+    message:"Welcome to the chat room!",
+    sender:"server"
+}))
 })

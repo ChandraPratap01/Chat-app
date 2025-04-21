@@ -14,7 +14,7 @@ const Home = () => {
     
    }
   return (
-    <div className="flex justify-center min-h-screen items-center">
+    <div className=" flex justify-center min-h-screen items-center">
       <div className="border-2 border-gray-500 p-2 h-59 w-2xl bg#242424 rounded-lg shadow-md">
         <p className="">
           <div className="flex ">
